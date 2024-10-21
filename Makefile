@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-CC = gccc
+CC = cc
 
 CFLAGS = -Wall -Werror -Wextra
 
@@ -19,13 +19,21 @@ NAME = push_swap
 SRC_PATH = src/
 OBJ_PATH = obj/
 
-SRC	=	swap.c \
+SRC		= main.c \
+		input_check.c \
+		input_check_utils.c \
+		initialization.c \
+		stack.c \
+		swap.c \
 		push.c \
 		rotate.c \
 		reverse_rotate.c \
-		error.c \
+		sort_tiny.c \
+		sort.c \
 		position.c \
-		push_swap.c \
+		cost.c \
+		do_move.c \
+		utils.c \
 
 SRCS	= $(addprefix $(SRC_PATH), $(SRC))
 OBJ		= $(SRC:.c=.o)
