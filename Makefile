@@ -12,7 +12,7 @@
 
 CC = cc
 
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -g
 
 NAME = push_swap
 
@@ -25,6 +25,7 @@ SRC	=	input_check.c \
 		stack.c \
 		swap.c \
 		push.c \
+		main.c \
 		rotate.c \
 		reverse_rotate.c \
 		sort_tiny.c \
@@ -33,6 +34,7 @@ SRC	=	input_check.c \
 		cost.c \
 		do_move.c \
 		utils.c \
+		ft_strtok.c \
 
 SRCS	= $(addprefix $(SRC_PATH), $(SRC))
 OBJ		= $(SRC:.c=.o)
@@ -45,7 +47,7 @@ $(OBJ_PATH):
 	mkdir $(OBJ_PATH)
 
 $(NAME): $(OBJS)
-	ar -rsc $(NAME) $?
+	$(CC) $(CLFAGS) $? -o $(NAME)
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 	$(CC) $(CFLAGS) -c $< -o $@ $(INCS)

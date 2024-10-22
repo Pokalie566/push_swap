@@ -86,7 +86,7 @@ int			nb_abs(int nb);
 
 /* Error */
 
-void		exit_error(t_stack **stack_a, t_stack **stack_b);
+int		exit_error(t_stack **stack_a, t_stack **stack_b);
 
 /* Input Check */
 
@@ -94,5 +94,9 @@ int			is_correct_input(char **av);
 int			is_digit(char c);
 int			is_sign(char c);
 int			nbstr_cmp(const char *s1, const char *s2);
+char		*ft_strtok(char *str, const char *delim);
+int			ft_strcmp(const char *s1, const char *s2);
+char		*ft_strchr(const char *s, int c);
+int			is_empty_or_whitespace(const char *arg);
 
 #endif

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adeboose <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: adeboose <adeboose@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 11:52:41 by adeboose          #+#    #+#             */
-/*   Updated: 2024/10/19 11:52:43 by adeboose         ###   ########.fr       */
+/*   Updated: 2024/10/22 14:07:46 by adeboose         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void	push_swap(t_stack **stack_a, t_stack **stack_b, int stack_size)
 {
 	if (stack_size == 2 && !is_sorted(*stack_a))
-		do_sa(stack_a);
+		sa(stack_a);
 	else if (stack_size == 3)
 		tiny_sort(stack_a);
 	else if (stack_size > 3 && !is_sorted(*stack_a))
@@ -31,7 +31,7 @@ int	main(int ac, char **av)
 	if (ac < 2)
 		return (0);
 	if (!is_correct_input(av))
-		exit_error(NULL, NULL);
+		return (exit_error(NULL, NULL));
 	stack_b = NULL;
 	stack_a = fill_stack_values(ac, av);
 	stack_size = get_stack_size(stack_a);

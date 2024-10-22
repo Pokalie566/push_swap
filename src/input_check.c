@@ -1,20 +1,48 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   input_check.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: adeboose <adeboose@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/22 14:48:02 by adeboose          #+#    #+#             */
+/*   Updated: 2024/10/22 15:19:43 by adeboose         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-static int	arg_is_number(char *av)
+int	arg_is_number(const char *arg)
 {
-	int	i;
-
-	i = 0;
-	if (is_sign(av[i]) && av[i + 1] != '\0')
-		i++;
-	while (av[i] && is_digit(av[i]))
-		i++;
-	if (av[i] != '\0' && !is_digit(av[i]))
+	if (*arg == '-')
+	{
+		arg++;
+		if (*arg == '\0')
+			return (0);
+		if (*arg == '0' && *(arg + 1) != '\0')
+			return (0);
+		if (*arg == '0' && *(arg + 1) == '\0')
+			return (0);
+	}
+	if (*arg == '0' && *(arg + 1) != '\0')
 		return (0);
+	while (*arg)
+	{
+		if (*arg < '0' || *arg > '9')
+			return (0);
+		arg++;
+	}
 	return (1);
 }
 
-static int	have_duplicates(char **av)
+int	arg_is_zero(const char *arg)
+{
+	while (*arg == '0')
+		arg++;
+	return (*arg == '\0');
+}
+
+int	have_duplicates(char **av)
 {
 	int	i;
 	int	j;
@@ -22,10 +50,10 @@ static int	have_duplicates(char **av)
 	i = 1;
 	while (av[i])
 	{
-		j = 1;
+		j = i + 1;
 		while (av[j])
 		{
-			if (j != i && nbstr_cmp(av[i], av[j]) == 0)
+			if (ft_strcmp(av[i], av[j]) == 0)
 				return (1);
 			j++;
 		}
@@ -34,17 +62,29 @@ static int	have_duplicates(char **av)
 	return (0);
 }
 
-static int	arg_is_zero(char *av)
+int	handle_argument(char *arg, int *nb_zeros)
 {
-	int	i;
+	char	*token;
 
-	i = 0;
-	if (is_sign(av[i]))
-		i++;
-	while (av[i] && av[i] == '0')
-		i++;
-	if (av[i] != '\0')
+	if (is_empty_or_whitespace(arg))
 		return (0);
+	if (ft_strchr(arg, ' '))
+	{
+		token = ft_strtok(arg, " ");
+		while (token)
+		{
+			if (!arg_is_number(token))
+				return (0);
+			*nb_zeros += arg_is_zero(token);
+			token = ft_strtok(NULL, " ");
+		}
+	}
+	else
+	{
+		if (!arg_is_number(arg))
+			return (0);
+		*nb_zeros += arg_is_zero(arg);
+	}
 	return (1);
 }
 
@@ -53,13 +93,12 @@ int	is_correct_input(char **av)
 	int	i;
 	int	nb_zeros;
 
-	nb_zeros = 0;
 	i = 1;
+	nb_zeros = 0;
 	while (av[i])
 	{
-		if (!arg_is_number(av[i]))
+		if (!handle_argument(av[i], &nb_zeros))
 			return (0);
-		nb_zeros += arg_is_zero(av[i]);
 		i++;
 	}
 	if (nb_zeros > 1)
