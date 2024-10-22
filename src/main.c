@@ -31,7 +31,7 @@ int	main(int ac, char **av)
 	if (ac < 2)
 		return (0);
 	if (!is_correct_input(av))
-		return (exit_error(NULL, NULL));
+		exit_error(NULL, NULL);
 	stack_b = NULL;
 	stack_a = fill_stack_values(ac, av);
 	stack_size = get_stack_size(stack_a);
