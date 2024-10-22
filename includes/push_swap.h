@@ -49,11 +49,11 @@ void		get_target_position(t_stack **stack_a, t_stack **stack_b);
 /* Cost */
 
 void		get_cost(t_stack **stack_a, t_stack **stack_b);
-void		cheapest_move(t_stack **stack_a, t_stack **stack_b);
+void		do_cheapest_move(t_stack **stack_a, t_stack **stack_b);
 
 /* Calculate Move */
 
-void		move(t_stack **a, t_stack **b, int cost_a, int cost_b);
+void		do_move(t_stack **a, t_stack **b, int cost_a, int cost_b);
 
 /* Operations */
 
@@ -86,7 +86,7 @@ int			nb_abs(int nb);
 
 /* Error */
 
-void		error(t_stack **stack_a, t_stack **stack_b);
+void		exit_error(t_stack **stack_a, t_stack **stack_b);
 
 /* Input Check */
 

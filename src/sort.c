@@ -25,16 +25,16 @@ static void	push_all_save_three(t_stack **stack_a, t_stack **stack_b)
 	{
 		if ((*stack_a)->index <= stack_size / 2)
 		{
-			do_pb(stack_a, stack_b);
+			pb(stack_a, stack_b);
 			pushed++;
 		}
 		else
-			do_ra(stack_a);
+			ra(stack_a);
 		i++;
 	}
 	while (stack_size - pushed > 3)
 	{
-		do_pb(stack_a, stack_b);
+		pb(stack_a, stack_b);
 		pushed++;
 	}
 }
@@ -50,7 +50,7 @@ static void	shift_stack(t_stack **stack_a)
 	{
 		while (lowest_pos < stack_size)
 		{
-			do_rra(stack_a);
+			rra(stack_a);
 			lowest_pos++;
 		}
 	}
@@ -58,7 +58,7 @@ static void	shift_stack(t_stack **stack_a)
 	{
 		while (lowest_pos > 0)
 		{
-			do_ra(stack_a);
+			ra(stack_a);
 			lowest_pos--;
 		}
 	}
