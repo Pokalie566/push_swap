@@ -86,7 +86,7 @@ int			nb_abs(int nb);
 
 /* Error */
 
-int		exit_error(t_stack **stack_a, t_stack **stack_b);
+int			exit_error(t_stack **stack_a, t_stack **stack_b);
 
 /* Input Check */
 
