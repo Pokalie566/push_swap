@@ -16,6 +16,12 @@ CFLAGS = -Wall -Werror -Wextra -g
 
 NAME = push_swap
 
+INC_DIR = includes
+INCS = -I ./$(INC_DIR) -I lib/libft/$(INC_DIR)
+
+LIBFT_DIR := lib/libft
+LIBFT := $(LIBFT_DIR)/libft.a
+
 SRC_PATH = src/
 OBJ_PATH = obj/
 
@@ -39,24 +45,26 @@ SRC	=	input_check.c \
 SRCS	= $(addprefix $(SRC_PATH), $(SRC))
 OBJ		= $(SRC:.c=.o)
 OBJS	= $(addprefix $(OBJ_PATH), $(OBJ))
-INCS	= -I ./includes/
 
-all: $(OBJ_PATH) $(NAME) 
+$(LIBFT):
+	make --no-print-directory -C $(LIBFT_DIR) -s -j all
 
-$(OBJ_PATH):
-	mkdir $(OBJ_PATH)
+all: $(NAME)
 
-$(NAME): $(OBJS)
-	$(CC) $(CLFAGS) $? -o $(NAME)
+$(NAME): $(LIBFT) $(OBJS)
+	$(CC) $(CFLAGS) $(INCS) $(OBJS) -o $@ $(LIBFT)
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
-	$(CC) $(CFLAGS) -c $< -o $@ $(INCS)
+	mkdir -p $(OBJ_PATH)
+	$(CC) $(CFLAGS) $(INCS) -c $< -o $@
 
 clean:
 	rm -rf $(OBJ_PATH)
+	make --no-print-directory -C $(LIBFT_DIR) -s -j clean
 
 fclean: clean
 	rm -f $(NAME)
+	make --no-print-directory -C $(LIBFT_DIR) -s -j fclean
 
 re: fclean all
 

@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-t_stack	*fill_stack_values(int ac, char **av)
+t_stack	*fill_stack_values(char **input)
 {
 	t_stack		*stack_a;
 	long int	nb;
@@ -20,13 +20,13 @@ t_stack	*fill_stack_values(int ac, char **av)
 
 	stack_a = NULL;
 	nb = 0;
-	i = 1;
-	while (i < ac)
+	i = 0;
+	while (input[i] != NULL)
 	{
-		nb = ft_atoi(av[i]);
+		nb = ft_atoi(input[i]);
 		if (nb > INT_MAX || nb < INT_MIN)
 			exit_error(&stack_a, NULL);
-		if (i == 1)
+		if (i == 0)
 			stack_a = stack_new((int)nb);
 		else
 			stack_add_bottom(&stack_a, stack_new((int)nb));

@@ -18,6 +18,7 @@
 # include <unistd.h>
 # include <limits.h>
 # include <stdio.h>
+# include "libft.h"
 
 typedef struct s_stack
 {
@@ -32,7 +33,7 @@ typedef struct s_stack
 
 /* Initialization */
 
-t_stack		*fill_stack_values(int ac, char **av);
+t_stack		*fill_stack_values(char **input);
 void		assign_index(t_stack *stack_a, int ac);
 
 /* Sorting Algorithms */
@@ -80,7 +81,6 @@ int			get_stack_size(t_stack	*stack);
 /* Utils */
 
 void		free_stack(t_stack **stack);
-long int	ft_atoi(const char *str);
 void		ft_putstr(char *str);
 int			nb_abs(int nb);
 
