@@ -88,7 +88,7 @@ int	main(int ac, char **av)
 	stack_size = get_stack_size(stack_a);
 	stack_b = NULL;
 	assign_index(stack_a, stack_size + 1);
-	push_swap(stack_a, stack_b, stack_size);
+	push_swap(&stack_a, &stack_b, stack_size);
 	free_resources(stack_a, stack_b, split_args);
 	return (0);
 }
