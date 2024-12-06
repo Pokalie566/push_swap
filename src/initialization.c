@@ -23,7 +23,7 @@ t_stack	*fill_stack_values(char **input)
 	i = 0;
 	while (input[i] != NULL)
 	{
-		nb = ft_atoi(input[i]);
+		nb = ft_atol(input[i]);
 		if (nb > INT_MAX || nb < INT_MIN)
 			exit_error(&stack_a, NULL);
 		if (i == 0)

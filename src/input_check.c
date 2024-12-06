@@ -47,7 +47,7 @@ int	have_duplicates(char **av)
 	int	i;
 	int	j;
 
-	i = 1;
+	i = 0;
 	while (av[i])
 	{
 		j = i + 1;
@@ -93,7 +93,7 @@ int	is_correct_input(char **av)
 	int	i;
 	int	nb_zeros;
 
-	i = 1;
+	i = 0;
 	nb_zeros = 0;
 	while (av[i])
 	{
@@ -104,6 +104,8 @@ int	is_correct_input(char **av)
 	if (nb_zeros > 1)
 		return (0);
 	if (have_duplicates(av))
+		return (0);
+	if (i == 0)
 		return (0);
 	return (1);
 }
