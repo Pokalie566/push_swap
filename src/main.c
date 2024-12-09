@@ -21,11 +21,18 @@ static char	*merge_args(int ac, char **av)
 	i = 1;
 	total_length = 0;
 	while (i < ac)
+	{
+		if (ft_strlen(av[i]) == 0 || is_empty_or_whitespace(av[i]))
+			exit_error(NULL, NULL);
+		i++;
+	}
+	i = 1;
+	while (i < ac)
 		total_length += ft_strlen(av[i++]) + 1;
 	merged_str = malloc(total_length * sizeof(char));
 	if (!merged_str)
 		exit(1);
-	strcpy(merged_str, av[1]);
+	ft_strcpy(merged_str, av[1]);
 	i = 2;
 	while (i < ac)
 	{
@@ -68,7 +75,7 @@ static char	**parse_args(int ac, char **av)
 	free(merged_str);
 	if (!is_correct_input(split_args))
 	{
-		free(split_args);
+		ft_free_table(split_args);
 		exit_error(NULL, NULL);
 	}
 	return (split_args);
@@ -85,6 +92,11 @@ int	main(int ac, char **av)
 		return (0);
 	split_args = parse_args(ac, av);
 	stack_a = fill_stack_values(split_args);
+	if(check_duplicate(stack_a))
+	{
+		ft_free_table(split_args);
+		exit_error(&stack_a, NULL);
+	}
 	stack_size = get_stack_size(stack_a);
 	stack_b = NULL;
 	assign_index(stack_a, stack_size + 1);

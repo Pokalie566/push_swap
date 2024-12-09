@@ -40,16 +40,15 @@ SRC	=	input_check.c \
 		cost.c \
 		do_move.c \
 		utils.c \
-		ft_strtok.c \
 
 SRCS	= $(addprefix $(SRC_PATH), $(SRC))
 OBJ		= $(SRC:.c=.o)
 OBJS	= $(addprefix $(OBJ_PATH), $(OBJ))
 
+all: $(NAME)
+
 $(LIBFT):
 	make --no-print-directory -C $(LIBFT_DIR) -s -j all
-
-all: $(NAME)
 
 $(NAME): $(LIBFT) $(OBJS)
 	$(CC) $(CFLAGS) $(INCS) $(OBJS) -o $@ $(LIBFT)
@@ -60,11 +59,11 @@ $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 
 clean:
 	rm -rf $(OBJ_PATH)
-	make --no-print-directory -C $(LIBFT_DIR) -s -j clean
+	make --no-print-directory -C $(LIBFT_DIR) clean
 
 fclean: clean
 	rm -f $(NAME)
-	make --no-print-directory -C $(LIBFT_DIR) -s -j fclean
+	make --no-print-directory -C $(LIBFT_DIR) fclean
 
 re: fclean all
 

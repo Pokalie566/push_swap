@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
 char	*ft_strtok(char *str, const char *delim)
 {
@@ -31,15 +31,4 @@ char	*ft_strtok(char *str, const char *delim)
 	if (*next_token)
 		*next_token++ = '\0';
 	return (start);
-}
-
-int	is_empty_or_whitespace(const char *arg)
-{
-	while (*arg)
-	{
-		if (*arg != ' ')
-			return (0);
-		arg++;
-	}
-	return (1);
 }

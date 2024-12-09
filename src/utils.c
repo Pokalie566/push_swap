@@ -55,3 +55,14 @@ int	nb_abs(int nb)
 		return (nb * -1);
 	return (nb);
 }
+
+int	is_empty_or_whitespace(const char *arg)
+{
+	while (*arg)
+	{
+		if (*arg != ' ')
+			return (0);
+		arg++;
+	}
+	return (1);
+}

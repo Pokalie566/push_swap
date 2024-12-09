@@ -47,19 +47,6 @@ int	nbstr_cmp(const char *s1, const char *s2)
 	return ((unsigned char)s1[i] - (unsigned char)s2[j]);
 }
 
-char	*ft_strchr(const char *s, int c)
-{
-	while (*s)
-	{
-		if (*s == (char)c)
-			return ((char *)s);
-		s++;
-	}
-	if (c == '\0')
-		return ((char *)s);
-	return (NULL);
-}
-
 int	ft_strcmp(const char *s1, const char *s2)
 {
 	while (*s1 && *s1 == *s2)
@@ -68,4 +55,14 @@ int	ft_strcmp(const char *s1, const char *s2)
 		s2++;
 	}
 	return (*(unsigned char *)s1 - *(unsigned char *)s2);
+}
+
+void	ft_free_table(char **table)
+{
+	int	i;
+
+	i = 0;
+	while (table[i])
+		free(table[i++]);
+	free(table);
 }

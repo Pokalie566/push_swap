@@ -25,7 +25,10 @@ t_stack	*fill_stack_values(char **input)
 	{
 		nb = ft_atol(input[i]);
 		if (nb > INT_MAX || nb < INT_MIN)
+		{
+			ft_free_table(input);
 			exit_error(&stack_a, NULL);
+		}
 		if (i == 0)
 			stack_a = stack_new((int)nb);
 		else
